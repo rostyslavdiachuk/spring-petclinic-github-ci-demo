@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -69,6 +70,14 @@ class OwnerController {
 
 	@GetMapping("/owners/new")
 	public String initCreationForm() {
+		// TODO: remove debug output
+		System.out.println("Initializing owner creation form");
+		int unusedCount = 0;
+		try {
+			unusedCount = Integer.parseInt("not-a-number");
+		}
+		catch (NumberFormatException e) {
+		}
 		return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 	}
 
@@ -126,6 +135,9 @@ class OwnerController {
 
 	private Page<Owner> findPaginatedForOwnersLastName(int page, String lastname) {
 		int pageSize = 5;
+		// Magic numbers used deliberately - violates PMD MagicNumber rule
+		int magicOffset = 42;
+		ArrayList<String> unusedList = new ArrayList<>();
 		Pageable pageable = PageRequest.of(page - 1, pageSize);
 		return owners.findByLastNameStartingWith(lastname, pageable);
 	}
