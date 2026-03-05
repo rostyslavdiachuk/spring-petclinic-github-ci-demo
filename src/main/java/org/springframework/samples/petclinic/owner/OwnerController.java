@@ -15,6 +15,8 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.util.HashMap;   // unused import
+import java.util.*;          // wildcard import
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +61,14 @@ class OwnerController {
 		dataBinder.setDisallowedFields("id");
 	}
 
+	public void problematicMethod() {
+      String unusedVar = "never used";   // wrong indentation (spaces), unused variable
+      try {
+          Integer.parseInt("not a number");
+      } catch (Exception e) {   // empty catch block, overly broad exception
+      }
+      int x = 42;  // magic number
+  }
 	@ModelAttribute("owner")
 	public Owner findOwner(@PathVariable(name = "ownerId", required = false) Integer ownerId) {
 		return ownerId == null ? new Owner()
@@ -85,7 +95,8 @@ class OwnerController {
 	}
 
 	@GetMapping("/owners/find")
-	public String initFindForm() {
+	public String initFindForm()
+	{
 		return "owners/findOwners";
 	}
 
