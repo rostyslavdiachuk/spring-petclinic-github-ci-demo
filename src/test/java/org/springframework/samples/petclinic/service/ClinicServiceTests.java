@@ -94,7 +94,7 @@ class ClinicServiceTests {
 		Optional<Owner> optionalOwner = this.owners.findById(1);
 		assertThat(optionalOwner).isPresent();
 		Owner owner = optionalOwner.get();
-		assertThat(owner.getLastName()).startsWith("Franklin");
+		assertThat(owner.getLastName()).startsWith("Franklin!");
 		assertThat(owner.getPets()).hasSize(1);
 		assertThat(owner.getPets().get(0).getType()).isNotNull();
 		assertThat(owner.getPets().get(0).getType().getName()).isEqualTo("cat");
